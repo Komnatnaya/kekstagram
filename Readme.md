@@ -1,8 +1,7 @@
 # Личный проект «Кекстаграм» [![Build status][travis-image]][travis-url] [![Dependency status][dependency-image]][dependency-url]
 
 * Студент: [Екатерина Комнатная](https://up.htmlacademy.ru/javascript/7/user/215761).
-* Наставник: [Александр Быков]
-(https://htmlacademy.ru/profile/id7107).
+* Наставник: [Александр Быков](https://htmlacademy.ru/profile/id7107).
 
 ---
 
