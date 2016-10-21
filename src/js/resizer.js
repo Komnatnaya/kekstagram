@@ -119,6 +119,9 @@
           this._resizeConstraint.side - this._ctx.lineWidth / 2,
           this._resizeConstraint.side - this._ctx.lineWidth / 2);
 
+      //Прямоугольник
+      this._ctx.fillStyle = 'rgba(0,0,0,0.8)';
+      this._ctx.save();
       this._ctx.beginPath();
       this._ctx.rect(-this._container.width / 2, -this._container.height / 2, this._container.width, this._container.height / 2 - this._resizeConstraint.side / 2 - this._ctx.lineWidth);
       this._ctx.rect(-this._container.width / 2, -this._container.height / 2, this._container.width / 2 - this._resizeConstraint.side / 2 - this._ctx.lineWidth, this._container.height);
