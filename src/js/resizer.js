@@ -119,6 +119,19 @@
           this._resizeConstraint.side - this._ctx.lineWidth / 2,
           this._resizeConstraint.side - this._ctx.lineWidth / 2);
 
+      this._ctx.beginPath();
+      this._ctx.rect(-this._container.width / 2, -this._container.height / 2, this._container.width, this._container.height / 2 - this._resizeConstraint.side / 2 - this._ctx.lineWidth);
+      this._ctx.rect(-this._container.width / 2, -this._container.height / 2, this._container.width / 2 - this._resizeConstraint.side / 2 - this._ctx.lineWidth, this._container.height);
+      this._ctx.rect(this._container.width / 2, this._container.height / 2, -this._container.width, -this._container.height / 2 + this._resizeConstraint.side / 2 - this._ctx.lineWidth / 2);
+      this._ctx.rect(this._container.width / 2, this._container.height / 2, -this._container.width / 2 + this._resizeConstraint.side / 2 - this._ctx.lineWidth / 2, -this._container.height);
+			this._ctx.fill();
+
+      //Размеры изображения
+      this._ctx.font = '20px sans-serif';
+      this._ctx.textAlign = 'center';
+      this._ctx.fillStyle = '#ffffff';
+      this._ctx.fillText(this._image.naturalWidth + ' X ' + this._image.naturalHeight, 0, -this._resizeConstraint.side / 2 - this._ctx.lineWidth * 2);
+
       // Восстановление состояния канваса, которое было до вызова ctx.save
       // и последующего изменения системы координат. Нужно для того, чтобы
       // следующий кадр рисовался с привычной системой координат, где точка
