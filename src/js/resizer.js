@@ -150,7 +150,7 @@
       this._ctx.fillStyle = '#ffffff';
       this._ctx.fillText(this._image.naturalWidth + ' X ' + this._image.naturalHeight, 0, -resizeConstraintSideHalf - this._ctx.lineWidth * 2);
 
-//      Проверка другого способа рисования темной области
+//      Проверка альтернативного способа рисовки темной области 80% прозрачности
 //      this._ctx.fillStyle = 'rgba(255,0,0,0.8)';
 //      this._ctx.save();
 //      this._ctx.beginPath();
