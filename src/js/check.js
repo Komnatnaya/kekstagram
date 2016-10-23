@@ -34,5 +34,5 @@ function getMessage(a, b) {
 
 }
 
-getMessage(a, b);
+getMessage();
 
