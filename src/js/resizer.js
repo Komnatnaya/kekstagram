@@ -130,7 +130,7 @@
           this._resizeConstraint.side - lineWidthHalf,
           this._resizeConstraint.side - lineWidthHalf);
 
-      //Прямоугольник
+      //Прямоугольник темный с прозрачночтью 80%
       this._ctx.fillStyle = 'rgba(0,0,0,0.8)';
       this._ctx.save();
       this._ctx.beginPath();
@@ -150,6 +150,23 @@
       this._ctx.textAlign = 'center';
       this._ctx.fillStyle = '#ffffff';
       this._ctx.fillText(this._image.naturalWidth + ' X ' + this._image.naturalHeight, 0, -resizeConstraintSideHalf - this._ctx.lineWidth * 2);
+
+//      Проверка другого способа рисования темной области
+//      this._ctx.fillStyle = 'rgba(255,0,0,0.8)';
+//      this._ctx.save();
+//      this._ctx.beginPath();
+//      this._ctx.moveTo(-containerWidthHalf, -containerHeightHalf);
+//      this._ctx.lineTo(containerWidthHalf, -containerHeightHalf);
+//      this._ctx.lineTo(containerWidthHalf, containerHeightHalf);
+//      this._ctx.lineTo(-containerWidthHalf, containerHeightHalf);
+//      this._ctx.lineTo(-containerWidthHalf, -containerHeightHalf);
+//      this._ctx.moveTo(-resizeConstraintSideHalf - this._ctx.lineWidth, -resizeConstraintSideHalf -this._ctx.lineWidth);
+//      this._ctx.lineTo(resizeConstraintSideHalf - lineWidthHalf, -resizeConstraintSideHalf - this._ctx.lineWidth);
+//      this._ctx.lineTo(resizeConstraintSideHalf - lineWidthHalf, resizeConstraintSideHalf - lineWidthHalf);
+//      this._ctx.lineTo(-resizeConstraintSideHalf - this._ctx.lineWidth, resizeConstraintSideHalf - lineWidthHalf);
+//      this._ctx.lineTo(-resizeConstraintSideHalf - this._ctx.lineWidth, -resizeConstraintSideHalf -this._ctx.lineWidth);
+//      this._ctx.fill('evenodd');
+
 
       // Восстановление состояния канваса, которое было до вызова ctx.save
       // и последующего изменения системы координат. Нужно для того, чтобы
