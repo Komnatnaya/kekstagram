@@ -22,7 +22,7 @@ function getMessage(a, b) {
       return 'Общая площадь артефактов сжатия: ' + artifactsSquare + ' пикселей';
     } else {
       var amountOfRedPoints = 0;
-      for (var i = 0; i < a.length; i++) {
+      for (i = 0; i < a.length; i++) {
         amountOfRedPoints += a[i];
       }
       return 'Количество красных точек во всех строчках изображения: ' + amountOfRedPoints;
