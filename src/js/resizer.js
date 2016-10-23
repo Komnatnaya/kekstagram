@@ -132,7 +132,6 @@
 
       //Прямоугольник темный с прозрачночтью 80%
       this._ctx.fillStyle = 'rgba(0,0,0,0.8)';
-      this._ctx.save();
       this._ctx.beginPath();
       this._ctx.rect(-containerWidthHalf, -containerHeightHalf, this._container.width, containerHeightHalf - resizeConstraintSideHalf - this._ctx.lineWidth);
       this._ctx.rect(-containerWidthHalf, -containerHeightHalf, containerWidthHalf - resizeConstraintSideHalf - this._ctx.lineWidth, this._container.height);
