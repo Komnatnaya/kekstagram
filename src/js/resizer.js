@@ -154,11 +154,11 @@
       this._ctx.lineTo(containerWidthHalf, containerHeightHalf);
       this._ctx.lineTo(-containerWidthHalf, containerHeightHalf);
       this._ctx.lineTo(-containerWidthHalf, -containerHeightHalf);
-      this._ctx.moveTo(-resizeConstraintSideHalf - this._ctx.lineWidth, -resizeConstraintSideHalf -this._ctx.lineWidth);
+      this._ctx.moveTo(-resizeConstraintSideHalf - this._ctx.lineWidth, -resizeConstraintSideHalf - this._ctx.lineWidth);
       this._ctx.lineTo(resizeConstraintSideHalf - lineWidthHalf, -resizeConstraintSideHalf - this._ctx.lineWidth);
       this._ctx.lineTo(resizeConstraintSideHalf - lineWidthHalf, resizeConstraintSideHalf - lineWidthHalf);
       this._ctx.lineTo(-resizeConstraintSideHalf - this._ctx.lineWidth, resizeConstraintSideHalf - lineWidthHalf);
-      this._ctx.lineTo(-resizeConstraintSideHalf - this._ctx.lineWidth, -resizeConstraintSideHalf -this._ctx.lineWidth);
+      this._ctx.lineTo(-resizeConstraintSideHalf - this._ctx.lineWidth, -resizeConstraintSideHalf - this._ctx.lineWidth);
       this._ctx.fill('evenodd');
 
       //Размеры изображения
