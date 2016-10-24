@@ -124,11 +124,38 @@
 //          this._resizeConstraint.side - this._ctx.lineWidth / 2,
 //          this._resizeConstraint.side - this._ctx.lineWidth / 2);
 
-      this._ctx.strokeRect(
-          -resizeConstraintSideHalf - lineWidthHalf,
-          -resizeConstraintSideHalf - lineWidthHalf,
-          this._resizeConstraint.side - lineWidthHalf,
-          this._resizeConstraint.side - lineWidthHalf);
+//      this._ctx.strokeRect(
+//          -resizeConstraintSideHalf - lineWidthHalf,
+//          -resizeConstraintSideHalf - lineWidthHalf,
+//          this._resizeConstraint.side - lineWidthHalf,
+//          this._resizeConstraint.side - lineWidthHalf);
+
+      // Отрисовка прямоугольника точками
+      this._ctx.fillStyle = '#ffe753';
+      var dotRadius = 3;
+      var self = this;
+
+      function drawDot(dotLineStartX, dotLineStartY, dotLineLengthX, dotLineLengthY) {
+        self._ctx.beginPath();
+        var dotLineLength = dotLineLengthX || dotLineLengthY;
+        var dotInLine = dotLineLength / (dotRadius * 4);
+        var i = 0;
+
+        while(i < dotInLine) {
+          var x = dotLineStartX + dotLineLengthX / dotInLine * i;
+          var y = dotLineStartY + dotLineLengthY / dotInLine * i;
+          self._ctx.moveTo(x, y);
+          self._ctx.arc(x, y, dotRadius, 0, Math.PI * 2, true);
+          i++;
+        }
+        self._ctx.fill();
+      }
+
+      drawDot(-resizeConstraintSideHalf - lineWidthHalf, -resizeConstraintSideHalf - lineWidthHalf, this._resizeConstraint.side, 0);
+      drawDot(-resizeConstraintSideHalf - lineWidthHalf, -resizeConstraintSideHalf - lineWidthHalf, 0, this._resizeConstraint.side);
+      drawDot(-resizeConstraintSideHalf - lineWidthHalf, resizeConstraintSideHalf - this._ctx.lineWidth, this._resizeConstraint.side, 0);
+      drawDot(resizeConstraintSideHalf - this._ctx.lineWidth, -resizeConstraintSideHalf - lineWidthHalf, 0, this._resizeConstraint.side);
+
 
       //Прямоугольник темный с прозрачночтью 80%
 //      this._ctx.fillStyle = 'rgba(0,0,0,0.8)';
@@ -138,13 +165,6 @@
 //      this._ctx.rect(containerWidthHalf, containerHeightHalf, -this._container.width, -containerHeightHalf + resizeConstraintSideHalf - lineWidthHalf);
 //      this._ctx.rect(containerWidthHalf, containerHeightHalf, -containerWidthHalf + resizeConstraintSideHalf - lineWidthHalf, -this._container.height);
 //      this._ctx.fill();
-
-//      this._ctx.rect(-this._container.width / 2, -this._container.height / 2, this._container.width, this._container.height / 2 - this._resizeConstraint.side / 2 - this._ctx.lineWidth);
-//      this._ctx.rect(-this._container.width / 2, -this._container.height / 2, this._container.width / 2 - this._resizeConstraint.side / 2 - this._ctx.lineWidth, this._container.height);
-//      this._ctx.rect(this._container.width / 2, this._container.height / 2, -this._container.width, -this._container.height / 2 + this._resizeConstraint.side / 2 - this._ctx.lineWidth / 2);
-//      this._ctx.rect(this._container.width / 2, this._container.height / 2, -this._container.width / 2 + this._resizeConstraint.side / 2 - this._ctx.lineWidth / 2, -this._container.height);
-//			this._ctx.fill();
-
 
 //      Проверка альтернативного способа рисовки темной области 80% прозрачности
       this._ctx.fillStyle = 'rgba(0,0,0,0.8)';
