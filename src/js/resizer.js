@@ -158,21 +158,21 @@
 
 //      Отрисовка прямоугольника зигзагами
       this._ctx.strokeStyle = '#ffe753';
-      this._ctx.lineCap = "square";
+      this._ctx.lineCap = 'square';
       var zigLineStep = 30;
       var self = this;
 
-      function drawZig1(zigLineStartX, zigLineStartY, zigLineLengthX, k) {
+      function drawZig1(zigLineStartX, zigLineStartY, zigLineLengthX, dopkoof) {
         self._ctx.beginPath();
         var zigInLine = zigLineLengthX / zigLineStep;
         var i = 0;
 
         while(i < zigInLine) {
-          var x = zigLineStartX + k * zigLineLengthX / zigInLine * i;
+          var x = zigLineStartX + dopkoof * zigLineLengthX / zigInLine * i;
           var y = zigLineStartY;
           self._ctx.moveTo(x, y);
-          self._ctx.lineTo(x + k * zigLineStep / 2, y -  k * zigLineStep / 2);
-          self._ctx.lineTo(x + k * zigLineStep, y);
+          self._ctx.lineTo(x + dopkoof * zigLineStep / 2, y -  dopkoof * zigLineStep / 2);
+          self._ctx.lineTo(x + dopkoof * zigLineStep, y);
           i++;
         }
         self._ctx.stroke();
