@@ -209,25 +209,25 @@
 //      this._ctx.fill();
 
 //      Проверка альтернативного способа рисовки темной области 80% прозрачности
-//      this._ctx.fillStyle = 'rgba(0,0,0,0.8)';
-//      this._ctx.beginPath();
-//      this._ctx.moveTo(-containerWidthHalf, -containerHeightHalf);
-//      this._ctx.lineTo(containerWidthHalf, -containerHeightHalf);
-//      this._ctx.lineTo(containerWidthHalf, containerHeightHalf);
-//      this._ctx.lineTo(-containerWidthHalf, containerHeightHalf);
-//      this._ctx.lineTo(-containerWidthHalf, -containerHeightHalf);
-//      this._ctx.moveTo(-resizeConstraintSideHalf - this._ctx.lineWidth, -resizeConstraintSideHalf - this._ctx.lineWidth);
-//      this._ctx.lineTo(resizeConstraintSideHalf - lineWidthHalf, -resizeConstraintSideHalf - this._ctx.lineWidth);
-//      this._ctx.lineTo(resizeConstraintSideHalf - lineWidthHalf, resizeConstraintSideHalf - lineWidthHalf);
-//      this._ctx.lineTo(-resizeConstraintSideHalf - this._ctx.lineWidth, resizeConstraintSideHalf - lineWidthHalf);
-//      this._ctx.lineTo(-resizeConstraintSideHalf - this._ctx.lineWidth, -resizeConstraintSideHalf - this._ctx.lineWidth);
-//      this._ctx.fill('evenodd');
+      this._ctx.fillStyle = 'rgba(0,0,0,0.8)';
+      this._ctx.beginPath();
+      this._ctx.moveTo(-containerWidthHalf, -containerHeightHalf);
+      this._ctx.lineTo(containerWidthHalf, -containerHeightHalf);
+      this._ctx.lineTo(containerWidthHalf, containerHeightHalf);
+      this._ctx.lineTo(-containerWidthHalf, containerHeightHalf);
+      this._ctx.lineTo(-containerWidthHalf, -containerHeightHalf);
+      this._ctx.moveTo(-resizeConstraintSideHalf - this._ctx.lineWidth, -resizeConstraintSideHalf - this._ctx.lineWidth);
+      this._ctx.lineTo(resizeConstraintSideHalf - lineWidthHalf, -resizeConstraintSideHalf - this._ctx.lineWidth);
+      this._ctx.lineTo(resizeConstraintSideHalf - lineWidthHalf, resizeConstraintSideHalf - lineWidthHalf);
+      this._ctx.lineTo(-resizeConstraintSideHalf - this._ctx.lineWidth, resizeConstraintSideHalf - lineWidthHalf);
+      this._ctx.lineTo(-resizeConstraintSideHalf - this._ctx.lineWidth, -resizeConstraintSideHalf - this._ctx.lineWidth);
+      this._ctx.fill('evenodd');
 
       //Размеры изображения
-//      this._ctx.font = '20px sans-serif';
-//      this._ctx.textAlign = 'center';
-//      this._ctx.fillStyle = '#ffffff';
-//      this._ctx.fillText(this._image.naturalWidth + ' X ' + this._image.naturalHeight, 0, -resizeConstraintSideHalf - this._ctx.lineWidth * 2);
+      this._ctx.font = '20px sans-serif';
+      this._ctx.textAlign = 'center';
+      this._ctx.fillStyle = '#ffffff';
+      this._ctx.fillText(this._image.naturalWidth + ' X ' + this._image.naturalHeight, 0, -resizeConstraintSideHalf - this._ctx.lineWidth * 2);
 
       // Восстановление состояния канваса, которое было до вызова ctx.save
       // и последующего изменения системы координат. Нужно для того, чтобы
