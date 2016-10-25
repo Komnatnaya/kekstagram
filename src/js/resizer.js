@@ -162,17 +162,17 @@
       var zigLineStep = 30;
       var self = this;
 
-      function drawZig1(zigLineStartX, zigLineStartY, zigLineLengthX, dopkoof) {
+      function drawZig1(zigLineStartX, zigLineStartY, zigLineLengthX, dopCoef) {
         self._ctx.beginPath();
         var zigInLine = zigLineLengthX / zigLineStep;
         var i = 0;
 
         while(i < zigInLine) {
-          var x = zigLineStartX + dopkoof * zigLineLengthX / zigInLine * i;
+          var x = zigLineStartX + dopCoef * zigLineLengthX / zigInLine * i;
           var y = zigLineStartY;
           self._ctx.moveTo(x, y);
-          self._ctx.lineTo(x + dopkoof * zigLineStep / 2, y -  dopkoof * zigLineStep / 2);
-          self._ctx.lineTo(x + dopkoof * zigLineStep, y);
+          self._ctx.lineTo(x + dopCoef * zigLineStep / 2, y -  dopCoef * zigLineStep / 2);
+          self._ctx.lineTo(x + dopCoef * zigLineStep, y);
           i++;
         }
         self._ctx.stroke();
