@@ -162,17 +162,17 @@
       var zigLineStep = 30;
       var self = this;
 
-      function drawZig1(zigLineStartX, zigLineStartY, zigLineLengthX, dopCoef) {
+      function drawZig1(zigLineStartX, zigLineStartY, zigLineLengthX) {
         self._ctx.beginPath();
         var zigInLine = zigLineLengthX / zigLineStep;
         var i = 0;
 
         while(i < zigInLine) {
-          var x = zigLineStartX + dopCoef * zigLineLengthX / zigInLine * i;
+          var x = zigLineStartX + zigLineLengthX / zigInLine * i;
           var y = zigLineStartY;
           self._ctx.moveTo(x, y);
-          self._ctx.lineTo(x + dopCoef * zigLineStep / 2, y -  dopCoef * zigLineStep / 2);
-          self._ctx.lineTo(x + dopCoef * zigLineStep, y);
+          self._ctx.lineTo(x + zigLineStep / 2, y - zigLineStep / 2);
+          self._ctx.lineTo(x + zigLineStep, y);
           i++;
         }
         self._ctx.stroke();
@@ -194,9 +194,25 @@
         self._ctx.stroke();
       }
 
-      drawZig1(-resizeConstraintSideHalf, -resizeConstraintSideHalf, this._resizeConstraint.side, 1);
+      function drawZig3(zigLineStartX, zigLineStartY, zigLineLengthX) {
+        self._ctx.beginPath();
+        var zigInLine = zigLineLengthX / zigLineStep;
+        var i = 0;
+
+        while(i < zigInLine) {
+          var x = zigLineStartX - zigLineLengthX / zigInLine * i;
+          var y = zigLineStartY;
+          self._ctx.moveTo(x, y);
+          self._ctx.lineTo(x - zigLineStep / 2, y + zigLineStep / 2);
+          self._ctx.lineTo(x - zigLineStep, y);
+          i++;
+        }
+        self._ctx.stroke();
+      }
+
+      drawZig1(-resizeConstraintSideHalf, -resizeConstraintSideHalf, this._resizeConstraint.side);
       drawZig2(resizeConstraintSideHalf - zigLineStep / 2, -resizeConstraintSideHalf - zigLineStep / 2, this._resizeConstraint.side);
-      drawZig1(resizeConstraintSideHalf, resizeConstraintSideHalf - zigLineStep, this._resizeConstraint.side, -1);
+      drawZig3(resizeConstraintSideHalf, resizeConstraintSideHalf - zigLineStep, this._resizeConstraint.side);
       drawZig2(-resizeConstraintSideHalf, -resizeConstraintSideHalf, this._resizeConstraint.side - zigLineStep);
 
       //Прямоугольник темный с прозрачночтью 80%
