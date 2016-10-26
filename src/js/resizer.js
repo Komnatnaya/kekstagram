@@ -122,6 +122,7 @@
       this._ctx.strokeStyle = '#ffe753';
       this._ctx.lineCap = 'square';
       var ZIG_LINE_STEP = 30;
+      var zigLineStepHalf = ZIG_LINE_STEP / 2;
       var self = this;
 
       function drawZig1(zigLineStartX, zigLineStartY, zigLineLengthX) {
@@ -133,7 +134,7 @@
           var x = zigLineStartX + zigLineLengthX / zigInLine * i;
           var y = zigLineStartY;
           self._ctx.moveTo(x, y);
-          self._ctx.lineTo(x + ZIG_LINE_STEP / 2, y - ZIG_LINE_STEP / 2);
+          self._ctx.lineTo(x + zigLineStepHalf, y - zigLineStepHalf);
           self._ctx.lineTo(x + ZIG_LINE_STEP, y);
           i++;
         }
@@ -149,7 +150,7 @@
           var x = zigLineStartX;
           var y = zigLineStartY + zigLineLengthY / zigInLine * i;
           self._ctx.moveTo(x, y);
-          self._ctx.lineTo(x + ZIG_LINE_STEP / 2, y + ZIG_LINE_STEP / 2);
+          self._ctx.lineTo(x + zigLineStepHalf, y + zigLineStepHalf);
           self._ctx.lineTo(x, y + ZIG_LINE_STEP);
           i++;
         }
@@ -165,7 +166,7 @@
           var x = zigLineStartX - zigLineLengthX / zigInLine * i;
           var y = zigLineStartY;
           self._ctx.moveTo(x, y);
-          self._ctx.lineTo(x - ZIG_LINE_STEP / 2, y + ZIG_LINE_STEP / 2);
+          self._ctx.lineTo(x - zigLineStepHalf, y + zigLineStepHalf);
           self._ctx.lineTo(x - ZIG_LINE_STEP, y);
           i++;
         }
@@ -173,7 +174,7 @@
       }
 
       drawZig1(-resizeConstraintSideHalf, -resizeConstraintSideHalf, this._resizeConstraint.side);
-      drawZig2(resizeConstraintSideHalf - ZIG_LINE_STEP / 2, -resizeConstraintSideHalf - ZIG_LINE_STEP / 2, this._resizeConstraint.side);
+      drawZig2(resizeConstraintSideHalf - zigLineStepHalf, -resizeConstraintSideHalf - zigLineStepHalf, this._resizeConstraint.side);
       drawZig3(resizeConstraintSideHalf, resizeConstraintSideHalf - ZIG_LINE_STEP, this._resizeConstraint.side);
       drawZig2(-resizeConstraintSideHalf, -resizeConstraintSideHalf, this._resizeConstraint.side - ZIG_LINE_STEP);
 
