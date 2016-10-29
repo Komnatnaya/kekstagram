@@ -72,19 +72,19 @@
    * @return {boolean}
    */
   var resizeFormIsValid = function() {
-    if (resizeX.value < 0) {
+    if (parseInt(resizeX.value, 10) < 0) {
       return false;
     }
-    if (resizeY.value < 0) {
+    if (parseInt(resizeY.value, 10) < 0) {
       return false;
     }
-    if (resizeSide.value < 1) {
+    if (parseInt(resizeSide.value, 10) < 1) {
       return false;
     }
-    if ((resizeX.value + resizeSide.value) > currentResizer._image.naturalWidth) {
+    if ((parseInt(resizeX.value, 10) + parseInt(resizeSide.value, 10)) > currentResizer._image.naturalWidth) {
       return false;
     }
-    if ((resizeY.value + resizeSide.value) > currentResizer._image.naturalHeight) {
+    if ((parseInt(resizeY.value, 10) + parseInt(resizeSide.value, 10)) > currentResizer._image.naturalHeight) {
       return false;
     }
     return true;
@@ -232,8 +232,8 @@
 
   resizeForm.oninput = function() {
     resizeSide.max = Math.min(currentResizer._image.naturalWidth, currentResizer._image.naturalHeight);
-    resizeX.max = currentResizer._image.naturalWidth - resizeSide.value;
-    resizeY.max = currentResizer._image.naturalHeight - resizeSide.value;
+    resizeX.max = currentResizer._image.naturalWidth - parseInt(resizeSide.value, 10);
+    resizeY.max = currentResizer._image.naturalHeight - parseInt(resizeSide.value, 10);
     var resizeFwd = document.querySelector('#resize-fwd');
     if (resizeFormIsValid()) {
       resizeFwd.removeAttribute('disabled');
