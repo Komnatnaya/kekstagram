@@ -238,7 +238,7 @@
     if (resizeFormIsValid()) {
       resizeFwd.removeAttribute('disabled');
     } else {
-      resizeFwd.setAttribute('disabled','disabled');
+      resizeFwd.setAttribute('disabled', 'disabled');
     }
   };
 
