@@ -101,9 +101,9 @@
    * @type {HTMLFormElement}
    */
   var resizeForm = document.forms['upload-resize'];
-  var resizeX = document.getElementById('#resize-x');
-  var resizeY = document.getElementById('#resize-y');
-  var resizeSide = document.getElementById('#resize-size');
+  var resizeX = document.querySelector('#resize-x');
+  var resizeY = document.querySelector('#resize-y');
+  var resizeSide = document.querySelector('#resize-size');
 
   resizeX.min = 0;
   resizeY.min = 0;
