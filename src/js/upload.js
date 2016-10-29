@@ -72,6 +72,21 @@
    * @return {boolean}
    */
   var resizeFormIsValid = function() {
+    if (resizeX.value < 0) {
+      return false;
+    }
+    if (resizeY.value < 0) {
+      return false;
+    }
+    if (resizeSide.value < 1) {
+      return false;
+    }
+    if ((resizeX.value + resizeSide.value) > currentResizer._image.naturalWidth) {
+      return false;
+    }
+    if ((resizeY.value + resizeSide.value) > currentResizer._image.naturalHeight) {
+      return false;
+    }
     return true;
   };
 
@@ -86,6 +101,13 @@
    * @type {HTMLFormElement}
    */
   var resizeForm = document.forms['upload-resize'];
+  var resizeX = document.getElementById('#resize-x');
+  var resizeY = document.getElementById('#resize-y');
+  var resizeSide = document.getElementById('#resize-size');
+
+  resizeX.min = 0;
+  resizeY.min = 0;
+  resizeSide.min = 1;
 
   /**
    * Форма добавления фильтра.
