@@ -230,6 +230,18 @@
     }
   };
 
+  resizeForm.oninput = function() {
+    resizeSide.max = Math.min(currentResizer._image.naturalWidth, currentResizer._image.naturalHeight);
+    resizeX.max = currentResizer._image.naturalWidth - resizeSide.value;
+    resizeY.max = currentResizer._image.naturalHeight - resizeSide.value;
+    var resizeFwd = document.querySelector('#resize-fwd');
+    if (resizeFormIsValid()) {
+      resizeFwd.removeAttribute('disabled');
+    } else {
+      resizeFwd.setAttribute('disabled','disabled');
+    }
+  };
+
   /**
    * Сброс формы фильтра. Показывает форму кадрирования.
    * @param {Event} evt
