@@ -118,61 +118,24 @@
 
       // Отрисовка прямоугольника, обозначающего область изображения после
       // кадрирования. Координаты задаются от центра.
-//      this._ctx.strokeRect(
-//          (-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2,
-//          (-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2,
-//          this._resizeConstraint.side - this._ctx.lineWidth / 2,
-//          this._resizeConstraint.side - this._ctx.lineWidth / 2);
-
-//      this._ctx.strokeRect(
-//          -resizeConstraintSideHalf - lineWidthHalf,
-//          -resizeConstraintSideHalf - lineWidthHalf,
-//          this._resizeConstraint.side - lineWidthHalf,
-//          this._resizeConstraint.side - lineWidthHalf);
-
-      // Отрисовка прямоугольника точками
-//      this._ctx.fillStyle = '#ffe753';
-//      var dotRadius = 3;
-//      var self = this;
-//
-//      function drawDot(dotLineStartX, dotLineStartY, dotLineLengthX, dotLineLengthY) {
-//        self._ctx.beginPath();
-//        var dotLineLength = dotLineLengthX || dotLineLengthY;
-//        var dotInLine = dotLineLength / (dotRadius * 4);
-//        var i = 0;
-//
-//        while(i < dotInLine) {
-//          var x = dotLineStartX + dotLineLengthX / dotInLine * i;
-//          var y = dotLineStartY + dotLineLengthY / dotInLine * i;
-//          self._ctx.moveTo(x, y);
-//          self._ctx.arc(x, y, dotRadius, 0, Math.PI * 2, true);
-//          i++;
-//        }
-//        self._ctx.fill();
-//      }
-//
-//      drawDot(-resizeConstraintSideHalf - lineWidthHalf, -resizeConstraintSideHalf - lineWidthHalf, this._resizeConstraint.side, 0);
-//      drawDot(-resizeConstraintSideHalf - lineWidthHalf, -resizeConstraintSideHalf - lineWidthHalf, 0, this._resizeConstraint.side);
-//      drawDot(-resizeConstraintSideHalf - lineWidthHalf, resizeConstraintSideHalf - this._ctx.lineWidth, this._resizeConstraint.side, 0);
-//      drawDot(resizeConstraintSideHalf - this._ctx.lineWidth, -resizeConstraintSideHalf - lineWidthHalf, 0, this._resizeConstraint.side);
-
-//      Отрисовка прямоугольника зигзагами
+      // Отрисовка прямоугольника зигзагами
       this._ctx.strokeStyle = '#ffe753';
       this._ctx.lineCap = 'square';
-      var zigLineStep = 30;
+      var ZIG_LINE_STEP = 30;
+      var zigLineStepHalf = ZIG_LINE_STEP / 2;
       var self = this;
 
       function drawZig1(zigLineStartX, zigLineStartY, zigLineLengthX) {
         self._ctx.beginPath();
-        var zigInLine = zigLineLengthX / zigLineStep;
+        var zigInLine = zigLineLengthX / ZIG_LINE_STEP;
         var i = 0;
 
         while(i < zigInLine) {
           var x = zigLineStartX + zigLineLengthX / zigInLine * i;
           var y = zigLineStartY;
           self._ctx.moveTo(x, y);
-          self._ctx.lineTo(x + zigLineStep / 2, y - zigLineStep / 2);
-          self._ctx.lineTo(x + zigLineStep, y);
+          self._ctx.lineTo(x + zigLineStepHalf, y - zigLineStepHalf);
+          self._ctx.lineTo(x + ZIG_LINE_STEP, y);
           i++;
         }
         self._ctx.stroke();
@@ -180,15 +143,15 @@
 
       function drawZig2(zigLineStartX, zigLineStartY, zigLineLengthY) {
         self._ctx.beginPath();
-        var zigInLine = zigLineLengthY / zigLineStep;
+        var zigInLine = zigLineLengthY / ZIG_LINE_STEP;
         var i = 0;
 
         while(i < zigInLine) {
           var x = zigLineStartX;
           var y = zigLineStartY + zigLineLengthY / zigInLine * i;
           self._ctx.moveTo(x, y);
-          self._ctx.lineTo(x + zigLineStep / 2, y + zigLineStep / 2);
-          self._ctx.lineTo(x, y + zigLineStep);
+          self._ctx.lineTo(x + zigLineStepHalf, y + zigLineStepHalf);
+          self._ctx.lineTo(x, y + ZIG_LINE_STEP);
           i++;
         }
         self._ctx.stroke();
@@ -196,35 +159,26 @@
 
       function drawZig3(zigLineStartX, zigLineStartY, zigLineLengthX) {
         self._ctx.beginPath();
-        var zigInLine = zigLineLengthX / zigLineStep;
+        var zigInLine = zigLineLengthX / ZIG_LINE_STEP;
         var i = 0;
 
         while(i < zigInLine) {
           var x = zigLineStartX - zigLineLengthX / zigInLine * i;
           var y = zigLineStartY;
           self._ctx.moveTo(x, y);
-          self._ctx.lineTo(x - zigLineStep / 2, y + zigLineStep / 2);
-          self._ctx.lineTo(x - zigLineStep, y);
+          self._ctx.lineTo(x - zigLineStepHalf, y + zigLineStepHalf);
+          self._ctx.lineTo(x - ZIG_LINE_STEP, y);
           i++;
         }
         self._ctx.stroke();
       }
 
       drawZig1(-resizeConstraintSideHalf, -resizeConstraintSideHalf, this._resizeConstraint.side);
-      drawZig2(resizeConstraintSideHalf - zigLineStep / 2, -resizeConstraintSideHalf - zigLineStep / 2, this._resizeConstraint.side);
-      drawZig3(resizeConstraintSideHalf, resizeConstraintSideHalf - zigLineStep, this._resizeConstraint.side);
-      drawZig2(-resizeConstraintSideHalf, -resizeConstraintSideHalf, this._resizeConstraint.side - zigLineStep);
+      drawZig2(resizeConstraintSideHalf - zigLineStepHalf, -resizeConstraintSideHalf - zigLineStepHalf, this._resizeConstraint.side);
+      drawZig3(resizeConstraintSideHalf, resizeConstraintSideHalf - ZIG_LINE_STEP, this._resizeConstraint.side);
+      drawZig2(-resizeConstraintSideHalf, -resizeConstraintSideHalf, this._resizeConstraint.side - ZIG_LINE_STEP);
 
       //Прямоугольник темный с прозрачночтью 80%
-//      this._ctx.fillStyle = 'rgba(0,0,0,0.8)';
-//      this._ctx.beginPath();
-//      this._ctx.rect(-containerWidthHalf, -containerHeightHalf, this._container.width, containerHeightHalf - resizeConstraintSideHalf - this._ctx.lineWidth);
-//      this._ctx.rect(-containerWidthHalf, -containerHeightHalf, containerWidthHalf - resizeConstraintSideHalf - this._ctx.lineWidth, this._container.height);
-//      this._ctx.rect(containerWidthHalf, containerHeightHalf, -this._container.width, -containerHeightHalf + resizeConstraintSideHalf - lineWidthHalf);
-//      this._ctx.rect(containerWidthHalf, containerHeightHalf, -containerWidthHalf + resizeConstraintSideHalf - lineWidthHalf, -this._container.height);
-//      this._ctx.fill();
-
-//      Проверка альтернативного способа рисовки темной области 80% прозрачности
       this._ctx.fillStyle = 'rgba(0,0,0,0.8)';
       this._ctx.beginPath();
       this._ctx.moveTo(-containerWidthHalf, -containerHeightHalf);

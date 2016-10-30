@@ -71,8 +71,21 @@
    * Проверяет, валидны ли данные, в форме кадрирования.
    * @return {boolean}
    */
-  var resizeFormIsValid = function() {
+  var resizeFormIsValid = function(x, y, side) {
+    if (x < 0 || y < 0) {
+      return false;
+    }
+    if (side < 1) {
+      return false;
+    }
+    if ((x + side) > currentResizer._image.naturalWidth) {
+      return false;
+    }
+    if ((y + side) > currentResizer._image.naturalHeight) {
+      return false;
+    }
     return true;
+
   };
 
   /**
@@ -86,6 +99,13 @@
    * @type {HTMLFormElement}
    */
   var resizeForm = document.forms['upload-resize'];
+  var resizeX = document.querySelector('#resize-x');
+  var resizeY = document.querySelector('#resize-y');
+  var resizeSide = document.querySelector('#resize-size');
+
+  resizeX.min = 0;
+  resizeY.min = 0;
+  resizeSide.min = 1;
 
   /**
    * Форма добавления фильтра.
@@ -205,6 +225,24 @@
 
       resizeForm.classList.add('invisible');
       filterForm.classList.remove('invisible');
+    }
+  };
+
+  resizeForm.oninput = function() {
+    var resizeXVal = parseInt(resizeX.value, 10) || 0;
+    var resizeYVal = parseInt(resizeY.value, 10) || 0;
+    var resizeSideVal = parseInt(resizeSide.value, 10) || 0;
+
+    resizeSide.max = Math.min(currentResizer._image.naturalWidth, currentResizer._image.naturalHeight);
+    resizeX.max = currentResizer._image.naturalWidth - resizeSideVal;
+    resizeY.max = currentResizer._image.naturalHeight - resizeSideVal;
+
+    var resizeFwd = document.querySelector('#resize-fwd');
+
+    if (resizeFormIsValid(resizeXVal, resizeYVal, resizeSideVal)) {
+      resizeFwd.removeAttribute('disabled');
+    } else {
+      resizeFwd.setAttribute('disabled', 'disabled');
     }
   };
 
