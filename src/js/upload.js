@@ -72,7 +72,7 @@
    * @return {boolean}
    */
   var resizeFormIsValid = function(x, y, s) {
-    if (x || y < 0) {
+    if (x < 0 || y < 0) {
       return false;
     }
     if (s < 1) {
