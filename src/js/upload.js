@@ -71,17 +71,17 @@
    * Проверяет, валидны ли данные, в форме кадрирования.
    * @return {boolean}
    */
-  var resizeFormIsValid = function(x, y, s) {
+  var resizeFormIsValid = function(x, y, side) {
     if (x < 0 || y < 0) {
       return false;
     }
-    if (s < 1) {
+    if (side < 1) {
       return false;
     }
-    if ((x + s) > currentResizer._image.naturalWidth) {
+    if ((x + side) > currentResizer._image.naturalWidth) {
       return false;
     }
-    if ((y + s) > currentResizer._image.naturalHeight) {
+    if ((y + side) > currentResizer._image.naturalHeight) {
       return false;
     }
     return true;
