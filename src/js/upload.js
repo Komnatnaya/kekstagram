@@ -72,19 +72,16 @@
    * @return {boolean}
    */
   var resizeFormIsValid = function() {
-    if (parseInt(resizeX.value, 10) < 0) {
+    if (resizeXVal || resizeYVal < 0) {
       return false;
     }
-    if (parseInt(resizeY.value, 10) < 0) {
+    if (resizeSideVal < 1) {
       return false;
     }
-    if (parseInt(resizeSide.value, 10) < 1) {
+    if ((resizeXVal + resizeSideVal) > currentResizer._image.naturalWidth) {
       return false;
     }
-    if ((parseInt(resizeX.value, 10) + parseInt(resizeSide.value, 10)) > currentResizer._image.naturalWidth) {
-      return false;
-    }
-    if ((parseInt(resizeY.value, 10) + parseInt(resizeSide.value, 10)) > currentResizer._image.naturalHeight) {
+    if ((resizeYVal + resizeSideVal) > currentResizer._image.naturalHeight) {
       return false;
     }
     return true;
@@ -108,6 +105,10 @@
   resizeX.min = 0;
   resizeY.min = 0;
   resizeSide.min = 1;
+
+  var resizeXVal = parseInt(resizeX.value, 10);
+  var resizeYVal = parseInt(resizeY.value, 10);
+  var resizeSideVal = parseInt(resizeSide.value, 10);
 
   /**
    * Форма добавления фильтра.
@@ -232,8 +233,8 @@
 
   resizeForm.oninput = function() {
     resizeSide.max = Math.min(currentResizer._image.naturalWidth, currentResizer._image.naturalHeight);
-    resizeX.max = currentResizer._image.naturalWidth - parseInt(resizeSide.value, 10);
-    resizeY.max = currentResizer._image.naturalHeight - parseInt(resizeSide.value, 10);
+    resizeX.max = currentResizer._image.naturalWidth - resizeSideVal;
+    resizeY.max = currentResizer._image.naturalHeight - resizeSideVal;
     var resizeFwd = document.querySelector('#resize-fwd');
     if (resizeFormIsValid()) {
       resizeFwd.removeAttribute('disabled');
