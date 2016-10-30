@@ -229,9 +229,9 @@
   };
 
   resizeForm.oninput = function() {
-    var resizeXVal = parseInt(resizeX.value, 10);
-    var resizeYVal = parseInt(resizeY.value, 10);
-    var resizeSideVal = parseInt(resizeSide.value, 10);
+    var resizeXVal = parseInt(resizeX.value, 10) || 0;
+    var resizeYVal = parseInt(resizeY.value, 10) || 0;
+    var resizeSideVal = parseInt(resizeSide.value, 10) || 0;
 
     resizeSide.max = Math.min(currentResizer._image.naturalWidth, currentResizer._image.naturalHeight);
     resizeX.max = currentResizer._image.naturalWidth - resizeSideVal;
