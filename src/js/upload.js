@@ -299,6 +299,25 @@
     filterImage.className = 'filter-image-preview ' + filterMap[selectedFilter];
   };
 
+//  Вычисляем количество дней с последнего прошедшего дня рождения Грейс Хоппер.
+  var now = new Date();
+  var year = now.getFullYear();
+  var birthdayGH = new Date(year, 11, 9);
+
+  if (birthdayGH > now) {
+    birthdayGH.setFullYear(year - 1);
+  }
+
+  var storageDay = Math.round((now - birthdayGH) / (1000 * 3600 * 24));
+  console.log(storageDay);
+
+//  Дата хранения cookie
+  var expiresCookie = now;
+  expiresCookie.setDate(now.getDate() + storageDay);
+  console.log(expiresCookie);
+
+  document.cookie = 'upload-filter=;expires=expiresCookie';
+
   cleanupResizer();
   updateBackground();
 })();
