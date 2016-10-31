@@ -316,7 +316,8 @@
   expiresCookie.setDate(now.getDate() + storageDay);
   console.log(expiresCookie);
 
-  document.cookie = 'upload-filter=;expires=expiresCookie';
+  document.cookie = 'upload-filter=filter;expires=expiresCookie';
+  Cookies.set('upload-filter', 'filter', { expires: storageDay });
 
   cleanupResizer();
   updateBackground();
