@@ -300,24 +300,33 @@
   };
 
 //  Вычисляем количество дней с последнего прошедшего дня рождения Грейс Хоппер.
-  var now = new Date();
-  var year = now.getFullYear();
-  var birthdayGH = new Date(year, 11, 9);
+  var timeCookie = function(date) {
+//    var now = new Date();
+    var year = date.getFullYear();
+    var birthdayGH = new Date(year, 11, 9);
 
-  if (birthdayGH > now) {
-    birthdayGH.setFullYear(year - 1);
+    if (birthdayGH > date) {
+      birthdayGH.setFullYear(year - 1);
+    }
+
+    var storageDay = Math.round((date - birthdayGH) / (1000 * 3600 * 24));
+
+    return storageDay;
   }
 
-  var storageDay = Math.round((now - birthdayGH) / (1000 * 3600 * 24));
-  console.log(storageDay);
-
 //  Дата хранения cookie
-  var expiresCookie = now;
-  expiresCookie.setDate(now.getDate() + storageDay);
-  console.log(expiresCookie);
+//  var expiresCookie = date;
+//  expiresCookie.setDate(date.getDate() + storageDay);
+//  console.log(expiresCookie);
 
-  document.cookie = 'upload-filter=filter;expires=expiresCookie';
-  Cookies.set('upload-filter', 'filter', { expires: storageDay });
+  var filterInput = filterForm['upload-filter'];
+
+  if (Cookies.get('upload-filter')) {
+    filterInput.value = Cookies.get('upload-filter');
+  }
+
+//  document.cookie = 'upload-filter=filterInput.value;expires=expiresCookie';
+  Cookies.set('upload-filter', filterInput.value, { expires: timeCookie(new Date())});
 
   cleanupResizer();
   updateBackground();
