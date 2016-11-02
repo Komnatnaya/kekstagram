@@ -270,7 +270,11 @@
 
     filterForm.classList.add('invisible');
     uploadForm.classList.remove('invisible');
+
+    Cookies.set('upload-filter', uploadFilter, { expires: timeCookie(new Date())});
   };
+
+  filterImage.className = 'filter-image-preview ' + Cookies.get('upload-filter');
 
   /**
    * Обработчик изменения фильтра. Добавляет класс из filterMap соответствующий
@@ -297,6 +301,7 @@
     // убрать предыдущий примененный класс. Для этого нужно или запоминать его
     // состояние или просто перезаписывать.
     filterImage.className = 'filter-image-preview ' + filterMap[selectedFilter];
+    uploadFilter = filterMap[selectedFilter];
   };
 
 //  Вычисляем количество дней с последнего прошедшего дня рождения Грейс Хоппер.
@@ -310,23 +315,25 @@
     }
 
     var storageDay = Math.round((date - birthdayGH) / (1000 * 3600 * 24));
-
+    console.log(storageDay);
     return storageDay;
   }
+
+  var uploadFilter;
 
 //  Дата хранения cookie
 //  var expiresCookie = date;
 //  expiresCookie.setDate(date.getDate() + storageDay);
 //  console.log(expiresCookie);
 
-  var filterInput = filterForm['upload-filter'];
+//  var filterInput = filterForm['upload-filter'];
 
-  if (Cookies.get('upload-filter')) {
-    filterInput.value = Cookies.get('upload-filter');
-  }
+//  if (Cookies.get('upload-filter')) {
+//    filterInput.value = Cookies.get('upload-filter');
+//  }
 
 //  document.cookie = 'upload-filter=filterInput.value;expires=expiresCookie';
-  Cookies.set('upload-filter', filterInput.value, { expires: timeCookie(new Date())});
+
 
   cleanupResizer();
   updateBackground();
