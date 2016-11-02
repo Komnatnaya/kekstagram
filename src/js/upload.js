@@ -318,7 +318,7 @@
     var storageDay = Math.round((date - birthdayGH) / (1000 * 3600 * 24));
 
     return storageDay;
-  }
+  };
 
   cleanupResizer();
   updateBackground();
