@@ -262,6 +262,8 @@
    * записав сохраненный фильтр в cookie.
    * @param {Event} evt
    */
+  var uploadFilter;
+
   filterForm.onsubmit = function(evt) {
     evt.preventDefault();
 
@@ -306,7 +308,6 @@
 
 //  Вычисляем количество дней с последнего прошедшего дня рождения Грейс Хоппер.
   var timeCookie = function(date) {
-//    var now = new Date();
     var year = date.getFullYear();
     var birthdayGH = new Date(year, 11, 9);
 
@@ -318,22 +319,6 @@
     console.log(storageDay);
     return storageDay;
   }
-
-  var uploadFilter;
-
-//  Дата хранения cookie
-//  var expiresCookie = date;
-//  expiresCookie.setDate(date.getDate() + storageDay);
-//  console.log(expiresCookie);
-
-//  var filterInput = filterForm['upload-filter'];
-
-//  if (Cookies.get('upload-filter')) {
-//    filterInput.value = Cookies.get('upload-filter');
-//  }
-
-//  document.cookie = 'upload-filter=filterInput.value;expires=expiresCookie';
-
 
   cleanupResizer();
   updateBackground();
