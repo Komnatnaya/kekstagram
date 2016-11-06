@@ -40,7 +40,7 @@ var createCallback = function(src, callback) {
   var scriptPic = document.createElement('script');
   scriptPic.src = src;
   document.body.appendChild(scriptPic);
- 
+
   window.JSONPCallback = function(data) {
     callback(data);
   };
@@ -51,6 +51,6 @@ createCallback(PICTURES_URL, function(data) {
   pictures.forEach(function(photo) {
     container.appendChild(getPictureElement(photo));
   });
-})
+});
 
 picFilter.classList.remove('.hidden');
