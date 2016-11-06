@@ -37,20 +37,20 @@ var getPictureElement = function(photos) {
 };
 
 var createCallback = function(src, callback) {
-	var scriptPic = document.createElement('script');
-	scriptPic.src = src;
-	document.body.appendChild(scriptPic);
-	
+  var scriptPic = document.createElement('script');
+  scriptPic.src = src;
+  document.body.appendChild(scriptPic);
+ 
   window.JSONPCallback = function(data) {
-		callback(data);
-	};
+    callback(data);
+  };
 };
 
 createCallback(PICTURES_URL, function(data) {
-	var pictures = data;
-	pictures.forEach(function(photo) {
-  	container.appendChild(getPictureElement(photo));
-	});
+  var pictures = data;
+  pictures.forEach(function(photo) {
+    container.appendChild(getPictureElement(photo));
+  });
 })
 
 picFilter.classList.remove('.hidden');
