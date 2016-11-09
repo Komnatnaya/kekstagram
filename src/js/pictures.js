@@ -1,6 +1,6 @@
 'use strict';
 
-var picFunction = function() {
+(function() {
   var createCallback = require('./load');
   var getPictureElement = require('./picture');
 
@@ -18,6 +18,4 @@ var picFunction = function() {
   });
 
   picFilter.classList.remove('.hidden');
-};
-
-module.exports = picFunction;
+})();
