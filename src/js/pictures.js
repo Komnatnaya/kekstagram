@@ -3,6 +3,7 @@
 (function() {
   var createCallback = require('./load');
   var getPictureElement = require('./picture');
+  var gallery = require('./gallery');
 
   var picFilter = document.querySelector('.filters');
   picFilter.classList.add('.hidden');
@@ -12,9 +13,10 @@
 
   createCallback(PICTURES_URL, function(data) {
     var pictures = data;
-    pictures.forEach(function(photo) {
-      container.appendChild(getPictureElement(photo));
+    pictures.forEach(function(photo, pictureIndex) {
+      container.appendChild(getPictureElement(photo, pictureIndex));
     });
+    gallery.setPictures(pictures);
   });
 
   picFilter.classList.remove('.hidden');
