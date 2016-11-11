@@ -1,6 +1,8 @@
 'use strict';
 
-var getPictureElement = function(photos) {
+var gallery = require('./gallery');
+
+var getPictureElement = function(photos, picturesIndex) {
   var template = document.querySelector('#picture-template');
   var templateContainer = 'content' in template ? template.content : template;
   var pictureElement = templateContainer.querySelector('.picture').cloneNode(true);
@@ -25,6 +27,11 @@ var getPictureElement = function(photos) {
   } else {
     pictureImage.src = photos.url;
   }
+
+  pictureElement.onclick = function(event) {
+    event.preventDefault();
+    gallery.show(picturesIndex);
+  };
 
   return pictureElement;
 };
