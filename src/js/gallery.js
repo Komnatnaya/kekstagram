@@ -20,7 +20,7 @@ Gallery.prototype.show = function(index) {
   };
 
   this.galleryOverlayImage.onclick = function() {
-    if(self.activePicture < self.activePicture.length - 1) {
+    if(self.activePicture < self.pictures.length - 1) {
       self.setActivePicture(self.activePicture + 1);
     } else {
       self.setActivePicture(0);
@@ -39,12 +39,7 @@ Gallery.prototype.hide = function() {
 
 Gallery.prototype.setActivePicture = function(index) {
   this.activePicture = index;
-
-  if (this.pictures[index].preview) {
-    this.galleryOverlayImage.src = this.pictures[index].preview;
-  } else {
-    this.galleryOverlayImage.src = this.pictures[index].url;
-  }
+  this.galleryOverlayImage.src = this.pictures[index].url;
 
   document.querySelector('.comments-count').textContent = this.pictures[index].comments;
   document.querySelector('.likes-count').textContent = this.pictures[index].likes;
