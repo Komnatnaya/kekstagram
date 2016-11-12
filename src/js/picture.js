@@ -2,7 +2,7 @@
 
 var gallery = require('./gallery');
 
-var getPictureElement = function(photos, picturesIndex) {
+var getPictureElement = function(photos) {
   var template = document.querySelector('#picture-template');
   var templateContainer = 'content' in template ? template.content : template;
   var pictureElement = templateContainer.querySelector('.picture').cloneNode(true);
@@ -28,12 +28,21 @@ var getPictureElement = function(photos, picturesIndex) {
     pictureImage.src = photos.url;
   }
 
-  pictureElement.onclick = function(event) {
+  return pictureElement;
+};
+
+var Picture = function(photos, picturesIndex) {
+  this.data = photos;
+  this.element = getPictureElement(photos);
+
+  this.element.onclick = function(event) {
     event.preventDefault();
     gallery.show(picturesIndex);
   };
 
-  return pictureElement;
+  this.element.remove = function() {
+    this.element.onclick = null;
+  };
 };
 
-module.exports = getPictureElement;
+module.exports = Picture;

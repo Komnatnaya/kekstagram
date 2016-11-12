@@ -2,7 +2,7 @@
 
 (function() {
   var createCallback = require('./load');
-  var getPictureElement = require('./picture');
+  var Picture = require('./picture');
   var gallery = require('./gallery');
 
   var picFilter = document.querySelector('.filters');
@@ -14,7 +14,7 @@
   createCallback(PICTURES_URL, function(data) {
     var pictures = data;
     pictures.forEach(function(photo, pictureIndex) {
-      container.appendChild(getPictureElement(photo, pictureIndex));
+      container.appendChild(new Picture(photo, pictureIndex).element);
     });
     gallery.setPictures(pictures);
   });
