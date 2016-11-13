@@ -39,7 +39,12 @@ Gallery.prototype.hide = function() {
 
 Gallery.prototype.setActivePicture = function(index) {
   this.activePicture = index;
-  this.galleryOverlayImage.src = this.pictures[index].url;
+
+  if (this.pictures[index].preview) {
+    this.galleryOverlayImage.src = this.pictures[index].preview;
+  } else {
+    this.galleryOverlayImage.src = this.pictures[index].url;
+  }
 
   document.querySelector('.comments-count').textContent = this.pictures[index].comments;
   document.querySelector('.likes-count').textContent = this.pictures[index].likes;
