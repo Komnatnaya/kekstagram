@@ -35,7 +35,7 @@
     }, renderPictures);
   };
 
-  var checkVisibility = function () {
+  var checkVisibility = function() {
     var scrollHeight = document.body.scrollHeight;
     var clientHeight = document.body.clientHeight;
 
