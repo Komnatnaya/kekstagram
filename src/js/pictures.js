@@ -35,11 +35,21 @@
     }, renderPictures);
   };
 
+  var checkVisibility = function () {
+    var scrollHeight = document.body.scrollHeight;
+    var clientHeight = document.body.clientHeight;
+
+    if(clientHeight < scrollHeight) {
+      loadPictures(activeFilter, ++pageNumber);
+    }
+  };
+
   var changeFilter = function(filterID) {
     container.innerHTML = '';
     activeFilter = filterID;
     pageNumber = 0;
     loadPictures(filterID, pageNumber);
+    checkVisibility();
   };
 
   pictureFilter.addEventListener('click', function(evt) {
@@ -50,11 +60,7 @@
 
   var lastCall = Date.now();
 
-  window.addEventListener('load', function() {
-    if(window.innerHeight >= 784 || window.innerWidth >= 1354) {
-      loadPictures(activeFilter, ++pageNumber);
-    }
-  });
+  window.addEventListener('load', checkVisibility());
 
   window.addEventListener('scroll', function() {
     if (Date.now() - lastCall >= THROTTLE_TIMEOUT) {
