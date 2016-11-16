@@ -1,13 +1,22 @@
 'use strict';
 
-var createCallback = function(src, callback) {
-  var scriptPic = document.createElement('script');
-  scriptPic.src = src;
-  document.body.appendChild(scriptPic);
+var getSearchString = function(params) {
+  return Object.keys(params).map(function(param) {
+    return [param, params[param]].join('=');
+  }).join('&');
+};
 
-  window.JSONPCallback = function(data) {
-    callback(data);
+var createCallback = function(url, params, callback) {
+  var xhr = new XMLHttpRequest();
+
+  xhr.onload = function(evt) {
+    var loadedData = JSON.parse(evt.target.response);
+    callback(loadedData);
   };
+
+  xhr.open('GET', url + '?' + getSearchString(params));
+
+  xhr.send();
 };
 
 module.exports = createCallback;

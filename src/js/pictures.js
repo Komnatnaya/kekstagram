@@ -5,19 +5,67 @@
   var Picture = require('./picture');
   var gallery = require('./gallery');
 
-  var picFilter = document.querySelector('.filters');
-  picFilter.classList.add('.hidden');
+  var pictureFilter = document.querySelector('.filters');
+  pictureFilter.classList.add('hidden');
 
-  var PICTURES_URL = 'http://localhost:1507/api/pictures?callback=JSONPCallback';
+  var THROTTLE_TIMEOUT = 100;
+  var GAP = 200;
+  var PICTURES_URL = 'api/pictures';
+
+  var activeFilter = 'filter-popular';
   var container = document.querySelector('.pictures');
+  var footer = document.querySelector('footer');
+  var pageNumber = 0;
+  var pageSize = 12;
 
-  createCallback(PICTURES_URL, function(data) {
+  var renderPictures = function(data) {
     var pictures = data;
     pictures.forEach(function(photo, pictureIndex) {
       container.appendChild(new Picture(photo, pictureIndex).element);
     });
     gallery.setPictures(pictures);
+
+  };
+
+  var loadPictures = function(filter, currentPageNumber) {
+    createCallback(PICTURES_URL, {
+      from: currentPageNumber * pageSize,
+      to: currentPageNumber * pageSize + pageSize,
+      filter: filter
+    }, renderPictures);
+  };
+
+  var changeFilter = function(filterID) {
+    container.innerHTML = '';
+    activeFilter = filterID;
+    pageNumber = 0;
+    loadPictures(filterID, pageNumber);
+  };
+
+  pictureFilter.addEventListener('click', function(evt) {
+    if (evt.target.classList.contains('filters-radio')) {
+      changeFilter(evt.target.id);
+    }
   });
 
-  picFilter.classList.remove('.hidden');
+  var lastCall = Date.now();
+
+  window.addEventListener('load', function() {
+    if(window.innerHeight >= 784 || window.innerWidth >= 1354) {
+      loadPictures(activeFilter, ++pageNumber);
+    }
+  });
+
+  window.addEventListener('scroll', function() {
+    if (Date.now() - lastCall >= THROTTLE_TIMEOUT) {
+      if (footer.getBoundingClientRect().top - window.innerHeight <= GAP) {
+        loadPictures(activeFilter, ++pageNumber);
+      }
+
+      lastCall = Date.now();
+    }
+  });
+
+  pictureFilter.classList.remove('hidden');
+  changeFilter(activeFilter);
 })();
