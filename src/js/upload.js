@@ -85,7 +85,6 @@
       return false;
     }
     return true;
-
   };
 
   /**
@@ -159,7 +158,7 @@
    * и показывается форма кадрирования.
    * @param {Event} evt
    */
-  uploadForm.onchange = function(evt) {
+  uploadForm.addEventListener('change', function(evt) {
     var element = evt.target;
     if (element.id === 'upload-file') {
       // Проверка типа загружаемого файла, тип должен быть изображением
@@ -188,14 +187,14 @@
         showMessage(Action.ERROR);
       }
     }
-  };
+  });
 
   /**
    * Обработка сброса формы кадрирования. Возвращает в начальное состояние
    * и обновляет фон.
    * @param {Event} evt
    */
-  resizeForm.onreset = function(evt) {
+  resizeForm.addEventListener('reset', function(evt) {
     evt.preventDefault();
 
     cleanupResizer();
@@ -203,14 +202,14 @@
 
     resizeForm.classList.add('invisible');
     uploadForm.classList.remove('invisible');
-  };
+  });
 
   /**
    * Обработка отправки формы кадрирования. Если форма валидна, экспортирует
    * кропнутое изображение в форму добавления фильтра и показывает ее.
    * @param {Event} evt
    */
-  resizeForm.onsubmit = function(evt) {
+  resizeForm.addEventListener('submit', function(evt) {
     evt.preventDefault();
 
     if (resizeFormIsValid()) {
@@ -226,9 +225,9 @@
       resizeForm.classList.add('invisible');
       filterForm.classList.remove('invisible');
     }
-  };
+  });
 
-  resizeForm.oninput = function() {
+  resizeForm.addEventListener('input', function() {
     var resizeXVal = parseInt(resizeX.value, 10) || 0;
     var resizeYVal = parseInt(resizeY.value, 10) || 0;
     var resizeSideVal = parseInt(resizeSide.value, 10) || 0;
@@ -244,18 +243,18 @@
     } else {
       resizeFwd.setAttribute('disabled', 'disabled');
     }
-  };
+  });
 
   /**
    * Сброс формы фильтра. Показывает форму кадрирования.
    * @param {Event} evt
    */
-  filterForm.onreset = function(evt) {
+  filterForm.addEventListener('reset', function(evt) {
     evt.preventDefault();
 
     filterForm.classList.add('invisible');
     resizeForm.classList.remove('invisible');
-  };
+  });
 
   /**
    * Отправка формы фильтра. Возвращает в начальное состояние, предварительно
@@ -264,7 +263,7 @@
    */
   var uploadFilter;
 
-  filterForm.onsubmit = function(evt) {
+  filterForm.addEventListener('submit', function(evt) {
     evt.preventDefault();
 
     cleanupResizer();
@@ -274,7 +273,7 @@
     uploadForm.classList.remove('invisible');
 
     Cookies.set('upload-filter', uploadFilter, { expires: timeCookie(new Date())});
-  };
+  });
 
   filterImage.className = 'filter-image-preview ' + Cookies.get('upload-filter');
 
@@ -282,7 +281,7 @@
    * Обработчик изменения фильтра. Добавляет класс из filterMap соответствующий
    * выбранному значению в форме.
    */
-  filterForm.onchange = function() {
+  filterForm.addEventListener('change', function() {
     if (!filterMap) {
       // Ленивая инициализация. Объект не создается до тех пор, пока
       // не понадобится прочитать его в первый раз, а после этого запоминается
@@ -304,7 +303,7 @@
     // состояние или просто перезаписывать.
     filterImage.className = 'filter-image-preview ' + filterMap[selectedFilter];
     uploadFilter = filterMap[selectedFilter];
-  };
+  });
 
 //  Вычисляем количество дней с последнего прошедшего дня рождения Грейс Хоппер.
   var timeCookie = function(date) {
