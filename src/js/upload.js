@@ -243,6 +243,8 @@
     } else {
       resizeFwd.setAttribute('disabled', 'disabled');
     }
+
+    currentResizer.setConstraint(resizeXVal, resizeYVal, resizeSideVal);
   });
 
   window.addEventListener('resizerchange', function() {

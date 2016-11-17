@@ -24,7 +24,6 @@
       container.appendChild(new Picture(photo, pictureIndex).element);
     });
     gallery.setPictures(pictures);
-
   };
 
   var loadPictures = function(filter, currentPageNumber) {

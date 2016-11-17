@@ -92,29 +92,24 @@
       this._ctx.lineWidth = 3;
       // Цвет обводки.
       this._ctx.strokeStyle = '#ffe753';
-      // Размер штрихов. Первый элемент массива задает длину штриха, второй
-      // расстояние между соседними штрихами.
-//      this._ctx.setLineDash([15, 10]);
-      // Смещение первого штриха от начала линии.
-      this._ctx.lineDashOffset = 7;
 
       // Сохранение состояния канваса.
       this._ctx.save();
 
       // Установка начальной точки системы координат в центр холста.
-      this._ctx.translate(this._container.width / 2, this._container.height / 2);
-
-      var displX = -(this._resizeConstraint.x + this._resizeConstraint.side / 2);
-      var displY = -(this._resizeConstraint.y + this._resizeConstraint.side / 2);
-      // Отрисовка изображения на холсте. Параметры задают изображение, которое
-      // нужно отрисовать и координаты его верхнего левого угла.
-      // Координаты задаются от центра холста.
-      this._ctx.drawImage(this._image, displX, displY);
-
       var resizeConstraintSideHalf = this._resizeConstraint.side / 2;
       var containerWidthHalf = this._container.width / 2;
       var containerHeightHalf = this._container.height / 2;
       var lineWidthHalf = this._ctx.lineWidth / 2;
+
+      this._ctx.translate(containerWidthHalf, containerHeightHalf);
+
+      var displX = -(this._resizeConstraint.x + resizeConstraintSideHalf);
+      var displY = -(this._resizeConstraint.y + resizeConstraintSideHalf);
+      // Отрисовка изображения на холсте. Параметры задают изображение, которое
+      // нужно отрисовать и координаты его верхнего левого угла.
+      // Координаты задаются от центра холста.
+      this._ctx.drawImage(this._image, displX, displY);
 
       // Отрисовка прямоугольника, обозначающего область изображения после
       // кадрирования. Координаты задаются от центра.
@@ -139,7 +134,7 @@
           i++;
         }
         self._ctx.stroke();
-      }
+      };
 
       function drawZig2(zigLineStartX, zigLineStartY, zigLineLengthY) {
         self._ctx.beginPath();
@@ -155,7 +150,7 @@
           i++;
         }
         self._ctx.stroke();
-      }
+      };
 
       function drawZig3(zigLineStartX, zigLineStartY, zigLineLengthX) {
         self._ctx.beginPath();
@@ -171,12 +166,28 @@
           i++;
         }
         self._ctx.stroke();
-      }
+      };
+
+      function drawZig4(zigLineStartX, zigLineStartY, zigLineLengthY) {
+        self._ctx.beginPath();
+        var zigInLine = zigLineLengthY / ZIG_LINE_STEP;
+        var i = 0;
+
+        while(i < zigInLine) {
+          var x = zigLineStartX;
+          var y = zigLineStartY - zigLineLengthY / zigInLine * i;
+          self._ctx.moveTo(x, y);
+          self._ctx.lineTo(x - zigLineStepHalf, y - zigLineStepHalf);
+          self._ctx.lineTo(x, y - ZIG_LINE_STEP);
+          i++;
+        }
+        self._ctx.stroke();
+      };
 
       drawZig1(-resizeConstraintSideHalf, -resizeConstraintSideHalf, this._resizeConstraint.side);
       drawZig2(resizeConstraintSideHalf - zigLineStepHalf, -resizeConstraintSideHalf - zigLineStepHalf, this._resizeConstraint.side);
-      drawZig3(resizeConstraintSideHalf, resizeConstraintSideHalf - ZIG_LINE_STEP, this._resizeConstraint.side);
-      drawZig2(-resizeConstraintSideHalf, -resizeConstraintSideHalf, this._resizeConstraint.side - ZIG_LINE_STEP);
+      drawZig3(resizeConstraintSideHalf, resizeConstraintSideHalf - zigLineStepHalf, this._resizeConstraint.side);
+      drawZig4(-resizeConstraintSideHalf, resizeConstraintSideHalf, this._resizeConstraint.side);
 
       //Прямоугольник темный с прозрачночтью 80%
       this._ctx.fillStyle = 'rgba(0,0,0,0.8)';
