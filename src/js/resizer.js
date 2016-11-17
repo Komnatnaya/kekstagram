@@ -134,7 +134,7 @@
           i++;
         }
         self._ctx.stroke();
-      };
+      }
 
       function drawZig2(zigLineStartX, zigLineStartY, zigLineLengthY) {
         self._ctx.beginPath();
@@ -150,7 +150,7 @@
           i++;
         }
         self._ctx.stroke();
-      };
+      }
 
       function drawZig3(zigLineStartX, zigLineStartY, zigLineLengthX) {
         self._ctx.beginPath();
@@ -166,7 +166,7 @@
           i++;
         }
         self._ctx.stroke();
-      };
+      }
 
       function drawZig4(zigLineStartX, zigLineStartY, zigLineLengthY) {
         self._ctx.beginPath();
@@ -182,7 +182,7 @@
           i++;
         }
         self._ctx.stroke();
-      };
+      }
 
       drawZig1(-resizeConstraintSideHalf, -resizeConstraintSideHalf, this._resizeConstraint.side);
       drawZig2(resizeConstraintSideHalf - zigLineStepHalf, -resizeConstraintSideHalf - zigLineStepHalf, this._resizeConstraint.side);
