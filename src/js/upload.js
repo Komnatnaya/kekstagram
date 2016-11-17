@@ -168,7 +168,7 @@
 
         showMessage(Action.UPLOADING);
 
-        fileReader.onload = function() {
+        fileReader.addEventListener('load', function() {
           cleanupResizer();
 
           currentResizer = new Resizer(fileReader.result);
@@ -179,7 +179,7 @@
           resizeForm.classList.remove('invisible');
 
           hideMessage();
-        };
+        });
 
         fileReader.readAsDataURL(element.files[0]);
       } else {
@@ -243,6 +243,12 @@
     } else {
       resizeFwd.setAttribute('disabled', 'disabled');
     }
+  });
+
+  window.addEventListener('resizerchange', function() {
+    resizeX.value = currentResizer.getConstraint().x;
+    resizeY.value = currentResizer.getConstraint().y;
+    resizeSide.value = currentResizer.getConstraint().side;
   });
 
   /**

@@ -89,7 +89,7 @@
       // чего-либо с другой обводкой.
 
       // Толщина линии.
-      this._ctx.lineWidth = 6;
+      this._ctx.lineWidth = 3;
       // Цвет обводки.
       this._ctx.strokeStyle = '#ffe753';
       // Размер штрихов. Первый элемент массива задает длину штриха, второй
@@ -121,7 +121,7 @@
       // Отрисовка прямоугольника зигзагами
       this._ctx.strokeStyle = '#ffe753';
       this._ctx.lineCap = 'square';
-      var ZIG_LINE_STEP = 30;
+      var ZIG_LINE_STEP = 10;
       var zigLineStepHalf = ZIG_LINE_STEP / 2;
       var self = this;
 
