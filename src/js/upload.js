@@ -248,9 +248,11 @@
   });
 
   window.addEventListener('resizerchange', function() {
-    resizeX.value = currentResizer.getConstraint().x;
-    resizeY.value = currentResizer.getConstraint().y;
-    resizeSide.value = currentResizer.getConstraint().side;
+    var resizerGetConstraint = currentResizer.getConstraint();
+
+    resizeX.value = resizerGetConstraint.x;
+    resizeY.value = resizerGetConstraint.y;
+    resizeSide.value = resizerGetConstraint.side;
   });
 
   /**
