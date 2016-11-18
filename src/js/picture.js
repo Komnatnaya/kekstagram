@@ -13,9 +13,11 @@ var getPictureElement = function(photos) {
   var pictureImage = new Image();
 
   pictureImage.onload = function() {
-    pictureElement.querySelector('img').src = pictureImage.src;
-    pictureElement.querySelector('img').setAttribute('width', 182);
-    pictureElement.querySelector('img').setAttribute('height', 182);
+    var pictureElementImage = pictureElement.querySelector('img');
+
+    pictureElementImage.src = pictureImage.src;
+    pictureElementImage.setAttribute('width', 182);
+    pictureElementImage.setAttribute('height', 182);
   };
 
   pictureImage.onerror = function() {

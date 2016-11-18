@@ -4,6 +4,7 @@
   var createCallback = require('./load');
   var Picture = require('./picture');
   var gallery = require('./gallery');
+  var throttle = require('./throttle');
 
   var pictureFilter = document.querySelector('.filters');
   pictureFilter.classList.add('hidden');
@@ -57,19 +58,13 @@
     }
   });
 
-  var lastCall = Date.now();
-
   window.addEventListener('load', checkVisibility());
 
-  window.addEventListener('scroll', function() {
-    if (Date.now() - lastCall >= THROTTLE_TIMEOUT) {
-      if (footer.getBoundingClientRect().top - window.innerHeight <= GAP) {
-        loadPictures(activeFilter, ++pageNumber);
-      }
-
-      lastCall = Date.now();
+  window.addEventListener('scroll', throttle(function() {
+    if (footer.getBoundingClientRect().top - window.innerHeight <= GAP) {
+      loadPictures(activeFilter, ++pageNumber);
     }
-  });
+  }, THROTTLE_TIMEOUT));
 
   pictureFilter.classList.remove('hidden');
   changeFilter(activeFilter);
