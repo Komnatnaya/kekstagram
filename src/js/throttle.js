@@ -5,9 +5,9 @@ var throttle = function(throttleFunction, time) {
 
   return function() {
     if (Date.now() - lastCall >= time) {
-    throttleFunction();
+      throttleFunction();
 
-    lastCall = Date.now();
+      lastCall = Date.now();
     }
   };
 };
