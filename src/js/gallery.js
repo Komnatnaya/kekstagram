@@ -6,10 +6,14 @@ var Gallery = function() {
   this.galleryOverlay = document.querySelector('.gallery-overlay');
   this.galleryOverlayClose = document.querySelector('.gallery-overlay-close');
   this.galleryOverlayImage = document.querySelector('.gallery-overlay-image');
+  this.setPictures = this.setPictures.bind(this);
+  this.show = this.show.bind(this);
+  this.hide = this.hide.bind(this);
+  this.setActivePicture = this.setActivePicture.bind(this);
 };
 
 Gallery.prototype.setPictures = function(pictures) {
-  this.pictures = pictures;
+  this.pictures = this.pictures.concat(pictures);
 };
 
 Gallery.prototype.show = function(index) {
