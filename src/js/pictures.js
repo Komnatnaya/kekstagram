@@ -25,6 +25,10 @@
       container.appendChild(new Picture(photo, pictureIndex + pageNumber * pageSize).element);
     });
     gallery.setPictures(pictures);
+
+    if(pictures.length == 0) {
+      window.removeEventListener('scroll', getNewPicturesThrottle);
+    }
   };
 
   var loadPictures = function(filter, currentPageNumber) {
@@ -60,11 +64,13 @@
 
   window.addEventListener('load', checkVisibility());
 
-  window.addEventListener('scroll', throttle(function() {
+  var getNewPicturesThrottle = throttle(function() {
     if (footer.getBoundingClientRect().top - window.innerHeight <= GAP) {
       loadPictures(activeFilter, ++pageNumber);
     }
-  }, THROTTLE_TIMEOUT));
+  }, THROTTLE_TIMEOUT);
+
+  window.addEventListener('scroll', getNewPicturesThrottle);
 
   pictureFilter.classList.remove('hidden');
   changeFilter(activeFilter);
