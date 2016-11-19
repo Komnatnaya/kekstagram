@@ -26,7 +26,7 @@
     });
     gallery.setPictures(pictures);
 
-    if(pictures.length == 0) {
+    if(pictures.length === 0) {
       window.removeEventListener('scroll', getNewPicturesThrottle);
     }
   };
