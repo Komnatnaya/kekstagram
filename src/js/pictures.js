@@ -22,7 +22,7 @@
   var renderPictures = function(data) {
     var pictures = data;
     pictures.forEach(function(photo, pictureIndex) {
-      container.appendChild(new Picture(photo, pictureIndex).element);
+      container.appendChild(new Picture(photo, pictureIndex + pageNumber * pageSize).element);
     });
     gallery.setPictures(pictures);
   };
