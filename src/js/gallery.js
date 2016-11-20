@@ -2,7 +2,7 @@
 
 var Gallery = function() {
   this.pictures = [];
-  this.activePicture = null;
+  this.activePicture = 0;
   this.galleryOverlay = document.querySelector('.gallery-overlay');
   this.galleryOverlayClose = document.querySelector('.gallery-overlay-close');
   this.galleryOverlayImage = document.querySelector('.gallery-overlay-image');
