@@ -52,6 +52,7 @@
     container.innerHTML = '';
     activeFilter = filterID;
     pageNumber = 0;
+    gallery.clearPictures();
     loadPictures(filterID, pageNumber);
     checkVisibility();
   };
