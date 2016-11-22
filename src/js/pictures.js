@@ -61,7 +61,7 @@
 
   function clickFilter() {
     document.getElementById(activeFilter).checked = true;
-  };
+  }
 
   pictureFilter.addEventListener('click', function(evt) {
     if (evt.target.classList.contains('filters-radio')) {
