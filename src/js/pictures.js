@@ -13,7 +13,7 @@
   var GAP = 200;
   var PICTURES_URL = 'api/pictures';
 
-  var activeFilter = 'filter-popular';
+  var activeFilter = localStorage.getItem('activeFilter') || 'filter-popular';
   var container = document.querySelector('.pictures');
   var footer = document.querySelector('footer');
   var pageNumber = 0;
@@ -39,6 +39,8 @@
     }, renderPictures);
   };
 
+  clickFilter();
+
   var checkVisibility = function() {
     var scrollHeight = document.body.scrollHeight;
     var clientHeight = document.body.clientHeight;
@@ -52,13 +54,20 @@
     container.innerHTML = '';
     activeFilter = filterID;
     pageNumber = 0;
+    gallery.clearPictures();
     loadPictures(filterID, pageNumber);
     checkVisibility();
   };
 
+  function clickFilter() {
+    document.getElementById(activeFilter).checked = true;
+  }
+
   pictureFilter.addEventListener('click', function(evt) {
     if (evt.target.classList.contains('filters-radio')) {
       changeFilter(evt.target.id);
+      window.addEventListener('scroll', getNewPicturesThrottle);
+      localStorage.setItem('activeFilter', activeFilter);
     }
   });
 
