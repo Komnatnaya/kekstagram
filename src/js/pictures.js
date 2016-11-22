@@ -59,6 +59,7 @@
   pictureFilter.addEventListener('click', function(evt) {
     if (evt.target.classList.contains('filters-radio')) {
       changeFilter(evt.target.id);
+      window.addEventListener('scroll', getNewPicturesThrottle);
     }
   });
 
